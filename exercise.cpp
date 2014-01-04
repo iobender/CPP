@@ -13,16 +13,7 @@ const float weeks= 52.0f;
 const float months= 12.0f;
 
 int main() {
-	bool valid= false;
-	string choice;
-	do {
-		getline(cin, choice);
-		if(choice == "run") {
-			cout << "You chose run";
-		} else {
-			cout << "Not valid";
-		}
-	} while(!valid);
-
+	
+	
 	return 0;
 }
