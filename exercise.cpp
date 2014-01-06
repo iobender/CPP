@@ -14,18 +14,30 @@ const int weeks= 52;
 const int months= 12;
 
 void calcWeek(int week) {
-	cout << "Calculating stats for week " << week;
+	double fraction= (double) (5 + 7*(week - 1))/days;
+	
+	cout << "Goals for week " << week << ":";
+	cout << "\nMiles ran: " << fraction*miles;
+	cout << "\nCrunches:  " << fraction*crunches;
+	cout << "\nPushups:   " << fraction*pushups;
+	cout << "\nWeights:   " << fraction*weights;
 }
 
 void calcMonth(int month) {
-	cout << "Calculating stats for month " << month;
+	double fraction= (double) month/months;
+
+	cout << "Goals for month " << month << ":\n";
+	cout << "\nMiles ran: " << fraction*miles;
+	cout << "\nCrunches:  " << fraction*crunches;
+	cout << "\nPushups:   " << fraction*pushups;
+	cout << "\nWeights:   " << fraction*weights;
 }
 
 int main() {
 	int choice;
 	string entry;
 	bool week= true;
-	cout << "Enter a week: (or enter month): ";
+	cout << "Enter a week: (or type month): ";
 	getline(cin, entry);
 	if(entry == "month" || entry == "m") {
 		week= false;
@@ -33,6 +45,7 @@ int main() {
 		getline(cin, entry);
 	}
 	stringstream(entry) >> choice;
+	cout << endl;
 
 	if(week)
 		calcWeek(choice);
