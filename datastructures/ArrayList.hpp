@@ -8,5 +8,8 @@ class ArrayList {
 		unsigned int capacity;
 		unsigned int size;
 	public:
+		ArrayList();
+		ArrayList(unsigned int);
 		unsigned int getSize();
+		unsigned int getCapacity();
 };
