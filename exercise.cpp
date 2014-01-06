@@ -13,20 +13,15 @@ const int days= 365;
 const int weeks= 52;
 const int months= 12;
 
-void calcWeek(int week) {
-	double fraction= (double) (5 + 7*(week - 1))/days;
-	
-	cout << "Goals for week " << week << ":";
-	cout << "\nMiles ran: " << fraction*miles;
-	cout << "\nCrunches:  " << fraction*crunches;
-	cout << "\nPushups:   " << fraction*pushups;
-	cout << "\nWeights:   " << fraction*weights;
+float calcWeekFraction(int week) {
+	return (float) (5 + 7*(week - 1))/days;
 }
 
-void calcMonth(int month) {
-	double fraction= (double) month/months;
+float calcMonthFraction(int month) {
+	return (float) month/months;
+}
 
-	cout << "Goals for month " << month << ":\n";
+void printGoals(float fraction) {
 	cout << "\nMiles ran: " << fraction*miles;
 	cout << "\nCrunches:  " << fraction*crunches;
 	cout << "\nPushups:   " << fraction*pushups;
@@ -47,10 +42,16 @@ int main() {
 	stringstream(entry) >> choice;
 	cout << endl;
 
-	if(week)
-		calcWeek(choice);
-	else
-		calcMonth(choice);
+	float fraction;
+	if(week) {
+		cout << "Goals for month " << choice << ":\n";
+		fraction= calcWeekFraction(choice);
+	} else {
+		cout << "Goals for month " << choice << ":\n";
+		fraction= calcMonthFraction(choice);
+	}
+
+	printGoals(fraction);	
 
 	return 0;
 }
