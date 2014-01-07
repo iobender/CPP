@@ -14,8 +14,11 @@ class LinkedList {
 			node * next;
 		};
 		node * head;
+		int size;
 	public:
 		LinkedList();
+		int getSize();
+		T get(int);
 		bool add(const T&);
 		bool add(int, const T&);
 		string toString() const;

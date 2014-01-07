@@ -5,12 +5,36 @@
  * LinkedList implementation in C++
  */
 #include <iostream>
+#include <sstream>
+#include <stdexcept>
 #include "LinkedList.hpp"
 using namespace std;
 
 template<class T>
 LinkedList<T>::LinkedList() {
 	head= nullptr;
+	size= 0;
+}
+
+template<class T>
+int LinkedList<T>::getSize() {
+	return size;
+}
+
+template<class T>
+T LinkedList<T>::get(int index) {
+	if(index < 0)
+		throw out_of_range("Index out of bounds in LinkedList<T>::get");
+	int currIndex= 0;
+	node * curr= head;
+	while(currIndex < index && curr != nullptr) {
+		currIndex++;
+		curr= curr->next;
+	}
+	if(curr == nullptr)
+		throw out_of_range("Index out of bounds in LinkedList<T>::get");
+	else
+		return curr->data;
 }
 
 template<class T>
@@ -27,6 +51,7 @@ bool LinkedList<T>::add(const T& elt) {
 		curr->next->data= elt;
 		curr->next->next= nullptr;
 	}
+	size++;
 	return true;
 }
 
@@ -53,6 +78,7 @@ bool LinkedList<T>::add(int index, const T& elt) {
 			throw out_of_range("Index out of Bounds in LinkedList<T>::add");
 		}
 	}
+	size++;
 	return true;
 }
 
