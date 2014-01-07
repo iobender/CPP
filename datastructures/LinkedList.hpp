@@ -17,6 +17,7 @@ class LinkedList {
 	public:
 		LinkedList();
 		bool add(const T&);
+		bool add(int, const T&);
 		string toString() const;
 };
 
