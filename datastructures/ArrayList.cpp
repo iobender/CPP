@@ -120,10 +120,18 @@ int ArrayList<T>::find(T elt) const {
  * Reallocates more space when the currently allocated array is full.
  * Creates a new array of twice the previous capacity,
  * then copies over the data to it, and makes this the new array. 
+ * If no new capacity is specified, as will often be the case, 
+ * it defaults to 0, which is a signal that the new capacity should
+ * be twice the current capacity, which is realized in the method. 
+ * If the new capacity is less than the current size, false is returned.
  */
 template<class T>
-bool ArrayList<T>::reallocate() {
-	capacity *= 2;
+bool ArrayList<T>::reallocate(int newCapacity=0) {
+	if(newCapacity == 0)
+		newCapacity= 2*capacity;
+	if(newCapacity < size)
+		return false;
+	capacity= newCapacity;
 	T * newarr= new T [capacity];
 	for(int i= 0; i < size; i++)
 		newarr[i]= arr[i];

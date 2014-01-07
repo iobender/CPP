@@ -14,7 +14,7 @@ class ArrayList {
 		int capacity;
 		int size;
 		T * arr;
-		bool reallocate();
+		bool reallocate(int);
 	public:
 		ArrayList();
 		ArrayList(int);
