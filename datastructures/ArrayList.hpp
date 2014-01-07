@@ -14,8 +14,11 @@ class ArrayList {
 		ArrayList(unsigned int);
 		unsigned int getSize() const;
 		unsigned int getCapacity() const;
+		T get(int) const;
 		bool add(T);
 		bool add(int, T);
+		T remove(int);
+		int find(T) const;
 		string toString() const;
 };
 

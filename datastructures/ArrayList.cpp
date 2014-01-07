@@ -1,5 +1,6 @@
 #include <iostream>
 #include <sstream>
+#include <stdexcept>
 #include "ArrayList.hpp"
 using namespace std;
 
@@ -28,6 +29,14 @@ unsigned int ArrayList<T>::getCapacity() const {
 }
 
 template<class T>
+T ArrayList<T>::get(int index) const {
+	if(index >= size)
+		throw out_of_range("Index out of bounds in ArrayList<T>::get");
+	else
+		return arr[index];
+}
+
+template<class T>
 bool ArrayList<T>::add(T elt) {
 	if(size == capacity)
 		reallocate();
@@ -38,7 +47,7 @@ bool ArrayList<T>::add(T elt) {
 template<class T>
 bool ArrayList<T>::add(int index, T elt) {
 	if(index > size)
-		throw "Index out of Bounds Error";
+		throw out_of_range("Index out of bounds in ArrayList<T>::add");
 	if(size == capacity)
 		reallocate();
 	for(int i= size; i > index; i--) 
@@ -46,6 +55,24 @@ bool ArrayList<T>::add(int index, T elt) {
 	arr[index]= elt;
 	size++;
 	return true;
+}
+
+template<class T>
+T ArrayList<T>::remove(int index) {
+	if(index >= size)
+		throw out_of_range("Index out of bounds in ArrayList<T>::remove");
+	for(int i= index; i+1 < size; i++) 
+		arr[i]= arr[i+1];
+	size--;
+}
+
+template<class T>
+int ArrayList<T>::find(T elt) const {
+	for(int i= 0; i < size; i++) {
+		if(arr[i] == elt)
+			return i;
+	}
+	return -1;
 }
 
 template<class T>
