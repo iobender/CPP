@@ -8,13 +8,14 @@ class ArrayList {
 		unsigned int capacity;
 		unsigned int size;
 		T * arr;
+		bool reallocate();
 	public:
 		ArrayList();
 		ArrayList(unsigned int);
 		unsigned int getSize() const;
 		unsigned int getCapacity() const;
 		bool add(T);
-		bool reallocate();
+		bool add(int, T);
 		string toString() const;
 };
 

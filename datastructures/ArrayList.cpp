@@ -36,6 +36,19 @@ bool ArrayList<T>::add(T elt) {
 }
 
 template<class T>
+bool ArrayList<T>::add(int index, T elt) {
+	if(index > size)
+		throw "Index out of Bounds Error";
+	if(size == capacity)
+		reallocate();
+	for(int i= size; i > index; i--) 
+		arr[i]= arr[i-1];
+	arr[index]= elt;
+	size++;
+	return true;
+}
+
+template<class T>
 bool ArrayList<T>::reallocate() {
 	capacity *= 2;
 	T * newarr= new T [capacity];
