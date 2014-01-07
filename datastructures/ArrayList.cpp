@@ -51,7 +51,7 @@ int ArrayList<T>::getSize() const {
  */
 template<class T>
 T ArrayList<T>::get(int index) const {
-	if(index >= size)
+	if(index < 0 || index >= size)
 		throw out_of_range("Index out of bounds in ArrayList<T>::get");
 	else
 		return arr[index];
@@ -77,7 +77,7 @@ bool ArrayList<T>::add(T elt) {
  */
 template<class T>
 bool ArrayList<T>::add(int index, T elt) {
-	if(index > size)
+	if(index < 0 || index > size)
 		throw out_of_range("Index out of bounds in ArrayList<T>::add");
 	if(size == capacity)
 		reallocate();
@@ -95,7 +95,7 @@ bool ArrayList<T>::add(int index, T elt) {
  */
 template<class T>
 T ArrayList<T>::remove(int index) {
-	if(index >= size)
+	if(index < 0 || index >= size)
 		throw out_of_range("Index out of bounds in ArrayList<T>::remove");
 	for(int i= index; i+1 < size; i++) 
 		arr[i]= arr[i+1];
