@@ -16,7 +16,7 @@ class LinkedList {
 		node * head;
 	public:
 		LinkedList();
-		bool add(T);
+		bool add(const T&);
 		string toString() const;
 };
 

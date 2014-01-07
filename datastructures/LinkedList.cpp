@@ -14,7 +14,7 @@ LinkedList<T>::LinkedList() {
 }
 
 template<class T>
-bool LinkedList<T>::add(T elt) {
+bool LinkedList<T>::add(const T& elt) {
 	if(head == nullptr) {
 		head= new node;
 		head->data= elt;
