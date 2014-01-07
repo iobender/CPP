@@ -27,7 +27,7 @@ T LinkedList<T>::get(int index) const {
 		throw out_of_range("Index out of bounds in LinkedList<T>::get");
 	int currIndex= 0;
 	node * curr= head;
-	while(currIndex < index && curr != nullptr) {
+	while(currIndex != index) {
 		currIndex++;
 		curr= curr->next;
 	}
@@ -64,19 +64,14 @@ bool LinkedList<T>::add(int index, const T& elt) {
 	} else {
 		node * curr= head;
 		int currIndex= 0;
-		while(currIndex < index - 1 && curr->next != nullptr) {
+		while(currIndex != index - 1) {
 			currIndex++;
 			curr= curr->next;
 		}
-		if(currIndex == index - 1) {
-			node * next= curr->next;
-			curr->next= new node;
-			curr->next->data= elt;
-			curr->next->next= next;
-		} else {
-			return false; //something went wrong somewhere and a node's
-						  //next was set to null accidentally
-		}
+		node * next= curr->next;
+		curr->next= new node;
+		curr->next->data= elt;
+		curr->next->next= next;
 	}
 	size++;
 	return true;
@@ -88,7 +83,7 @@ T LinkedList<T>::set(int index, const T& elt) {
 		throw out_of_range("Index out of Bounds in LinkedList<T>::set");
 	int currIndex= 0;
 	node * curr= head;
-	while(currIndex < index && curr != nullptr) {
+	while(currIndex != index) {
 		currIndex++;
 		curr= curr->next;
 	}
@@ -111,7 +106,7 @@ T LinkedList<T>::remove(int index) {
 	} else {
 		int currIndex= 0;
 		node * curr= head;
-		while(currIndex < index - 1 && curr->next != nullptr) {
+		while(currIndex != index - 1) {
 			currIndex++;
 			curr= curr->next;
 		}
