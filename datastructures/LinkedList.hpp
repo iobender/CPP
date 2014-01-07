@@ -26,6 +26,7 @@ class LinkedList {
 		bool removeElt(const T&);
 		void clear();
 		int find(const T& elt) const;
+		T * toArr() const;
 		string toString() const;
 };
 

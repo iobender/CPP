@@ -172,6 +172,16 @@ int LinkedList<T>::find(const T& elt) const {
 }
 
 template<class T>
+T * LinkedList<T>::toArr() const {
+	T * arr= new T [size];
+	node * curr;
+	int index;
+	for(curr= head, index= 0; index < size; curr= curr->next, index++)
+		arr[index]= curr->data;
+	return arr;
+}
+
+template<class T>
 string LinkedList<T>::toString() const {
 	stringstream ret;
 	ret << "[ ";
