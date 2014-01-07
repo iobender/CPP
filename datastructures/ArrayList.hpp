@@ -10,7 +10,7 @@ using namespace std;
 template<class T>
 class ArrayList {
 	private:
-		static const int DEFAULT_INIT_CAPACITY= 4;
+		static const int DEFAULT_CAPACITY= 4;
 		int capacity;
 		int size;
 		T * arr;
@@ -23,6 +23,7 @@ class ArrayList {
 		bool add(T);
 		bool add(int, T);
 		T remove(int);
+		void clear();
 		int find(T) const;
 		string toString() const;
 };

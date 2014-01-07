@@ -20,7 +20,7 @@ using namespace std;
  */
 template<class T>
 ArrayList<T>::ArrayList() {
-	capacity= DEFAULT_INIT_CAPACITY;
+	capacity= DEFAULT_CAPACITY;
 	size= 0;
 	arr= new T [capacity];
 }
@@ -100,6 +100,17 @@ T ArrayList<T>::remove(int index) {
 	for(int i= index; i+1 < size; i++) 
 		arr[i]= arr[i+1];
 	size--;
+}
+
+
+/*
+ * Clears the list and resets the capacity back to default.
+ */
+template<class T>
+void ArrayList<T>::clear() {
+	size= 0;
+	if(capacity != DEFAULT_CAPACITY)
+		reallocate(DEFAULT_CAPACITY);
 }
 
 /*
