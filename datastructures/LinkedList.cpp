@@ -158,6 +158,20 @@ void LinkedList<T>::clear() {
 }
 
 template<class T>
+int LinkedList<T>::find(const T& elt) const {
+	int index= 0;
+	node * curr= head;
+	while(curr != nullptr && curr->data != elt) {
+		index++;
+		curr= curr->next;
+	}
+	if(curr == nullptr)
+		return -1;
+	else
+		return index;
+}
+
+template<class T>
 string LinkedList<T>::toString() const {
 	stringstream ret;
 	ret << "[ ";
