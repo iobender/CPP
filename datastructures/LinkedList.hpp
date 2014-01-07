@@ -23,7 +23,8 @@ class LinkedList {
 		bool add(int, const T&);
 		T set(int, const T&);
 		T remove(int);
-		bool removeElt(T);
+		void clear();
+		bool removeElt(const T&);
 		string toString() const;
 };
 

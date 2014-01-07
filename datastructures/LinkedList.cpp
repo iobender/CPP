@@ -101,6 +101,60 @@ template<class T>
 T LinkedList<T>::remove(int index) {
 	if(index < 0 || index >= size)
 		throw out_of_range("Index out of Bounds in LinkedList<T>::remove");
+	if(index == 0) {
+		node * old= head;
+		head= head->next;
+		T ret= old->data;
+		delete old;
+		size--;
+		return ret;
+	} else {
+		int currIndex= 0;
+		node * curr= head;
+		while(currIndex < index - 1 && curr->next != nullptr) {
+			currIndex++;
+			curr= curr->next;
+		}
+		node * old= curr->next;
+		curr->next= curr->next->next;
+		T ret= old->data;
+		delete old;
+		size--;
+		return ret;
+	}
+}
+
+template<class T>
+bool LinkedList<T>::removeElt(const T& elt) {
+	if(head == nullptr)
+		return false;
+	if(head->data == elt) {
+		node * old= head;
+		head= head->next;
+		delete old;
+		size--;
+		return true;
+	}
+	node * curr= head;
+	while(curr->next != nullptr && curr->next->data != elt)
+		curr= curr->next;
+	if(curr->next == nullptr)
+		return false;
+	node * old= curr->next;
+	curr->next= curr->next->next;
+	delete old;
+	size--;
+	return true;
+}
+
+template<class T>
+void LinkedList<T>::clear() {
+	while(head != nullptr) {
+		node * old= head;
+		head= head->next;
+		delete old;
+		size--;
+	}
 }
 
 template<class T>
