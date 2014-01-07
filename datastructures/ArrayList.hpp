@@ -1,3 +1,9 @@
+/*
+ * Matthew Bender
+ * Jan 6, 2014
+ *
+ * Header file for ArrayList.cpp
+ */
 #include <iostream>
 using namespace std;
 
@@ -13,7 +19,6 @@ class ArrayList {
 		ArrayList();
 		ArrayList(int);
 		int getSize() const;
-		int getCapacity() const;
 		T get(int) const;
 		bool add(T);
 		bool add(int, T);
