@@ -23,6 +23,7 @@ class ArrayList {
 		T get(int) const;
 		bool add(T);
 		bool add(int, T);
+		T set(int, T);
 		T remove(int);
 		bool removeElt(T);
 		void clear();

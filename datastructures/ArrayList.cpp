@@ -89,6 +89,20 @@ bool ArrayList<T>::add(int index, T elt) {
 }
 
 /*
+ * Sets the given index to the given element.
+ * Returns the element previously at that index.
+ * If the given index is not valid, an exception is thrown. 
+ */
+template<class T>
+T ArrayList<T>::set(int index, T elt) {
+	if(index < 0 || index >= size)
+		throw out_of_range("Index out of bounds in ArrayList<T>::set");
+	T ret= arr[index];
+	arr[index]= elt;
+	return ret;
+}
+
+/*
  * Removes the element at the given index, 
  * shifting left elements to the right.
  * If the given index is not valid, an exception is thrown. 
@@ -102,6 +116,10 @@ T ArrayList<T>::remove(int index) {
 	size--;
 }
 
+/*
+ * Removes the given element from the list, if it exists.
+ * If it is removed, returns true, else returns false.
+ */
 template<class T>
 bool ArrayList<T>::removeElt(T elt) {
 	int index= find(elt);
