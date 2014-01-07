@@ -28,6 +28,7 @@ class ArrayList {
 		bool removeElt(T);
 		void clear();
 		int find(T) const;
+		T * toArr() const;
 		string toString() const;
 };
 

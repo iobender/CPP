@@ -179,6 +179,19 @@ bool ArrayList<T>::reallocate(int newCapacity=0) {
 }
 
 /*
+ * Returns an array representation of the list, only upto
+ * the size of the list and not the capacity. 
+ * Note that it actually returns a pointer to a shallow copy of the data
+ */
+template<class T>
+T * ArrayList<T>::toArr() const {
+	T * result= new T [size];
+	for(int i= 0; i < size; i++)
+		result[i]= arr[i];
+	return result;
+}
+
+/*
  * Returns a string representation of the ArrayList.
  * Displays the size, capacity, and elements. 
  */
