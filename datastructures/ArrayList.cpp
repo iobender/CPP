@@ -12,19 +12,19 @@ ArrayList<T>::ArrayList() {
 }
 
 template<class T>
-ArrayList<T>::ArrayList(unsigned int init_capacity) {
+ArrayList<T>::ArrayList(int init_capacity) {
 	capacity= init_capacity;
 	size= 0;
 	arr= new T [capacity];
 }
 
 template<class T>
-unsigned int ArrayList<T>::getSize() const { 
+int ArrayList<T>::getSize() const { 
 	return size; 
 }
 
 template<class T>
-unsigned int ArrayList<T>::getCapacity() const {
+int ArrayList<T>::getCapacity() const {
 	return capacity;
 }
 
