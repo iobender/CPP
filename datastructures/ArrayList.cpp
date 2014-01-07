@@ -102,6 +102,16 @@ T ArrayList<T>::remove(int index) {
 	size--;
 }
 
+template<class T>
+bool ArrayList<T>::removeElt(T elt) {
+	int index= find(elt);
+	if(index == -1)
+		return false;
+	else {
+		remove(index);
+		return true;
+	}
+}
 
 /*
  * Clears the list and resets the capacity back to default.

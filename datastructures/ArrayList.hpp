@@ -14,6 +14,7 @@ class ArrayList {
 		int capacity;
 		int size;
 		T * arr;
+		
 		bool reallocate(int);
 	public:
 		ArrayList();
@@ -23,6 +24,7 @@ class ArrayList {
 		bool add(T);
 		bool add(int, T);
 		T remove(int);
+		bool removeElt(T);
 		void clear();
 		int find(T) const;
 		string toString() const;
