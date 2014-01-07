@@ -17,10 +17,13 @@ class LinkedList {
 		int size;
 	public:
 		LinkedList();
-		int getSize();
-		T get(int);
+		int getSize() const;
+		T get(int) const;
 		bool add(const T&);
 		bool add(int, const T&);
+		T set(int, const T&);
+		T remove(int);
+		bool removeElt(T);
 		string toString() const;
 };
 

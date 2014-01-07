@@ -17,12 +17,12 @@ LinkedList<T>::LinkedList() {
 }
 
 template<class T>
-int LinkedList<T>::getSize() {
+int LinkedList<T>::getSize() const {
 	return size;
 }
 
 template<class T>
-T LinkedList<T>::get(int index) {
+T LinkedList<T>::get(int index) const {
 	if(index < 0)
 		throw out_of_range("Index out of bounds in LinkedList<T>::get");
 	int currIndex= 0;
@@ -80,6 +80,28 @@ bool LinkedList<T>::add(int index, const T& elt) {
 	}
 	size++;
 	return true;
+}
+
+template<class T>
+T LinkedList<T>::set(int index, const T& elt) {
+	if(index < 0)
+		throw out_of_range("Index out of Bounds in LinkedList<T>::set");
+	int currIndex= 0;
+	node * curr= head;
+	while(currIndex < index && curr != nullptr) {
+		currIndex++;
+		curr= curr->next;
+	}
+	if(curr == nullptr)
+		throw out_of_range("Index out of Bounds in LinkedList<T>::set");
+	T ret= curr->data;
+	curr->data= elt;
+	return ret;
+}
+
+template<class T>
+T LinkedList<T>::remove(int index) {
+	if(index < 0)
 }
 
 template<class T>
