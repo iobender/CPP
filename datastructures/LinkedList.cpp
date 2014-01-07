@@ -10,17 +10,28 @@
 #include "LinkedList.hpp"
 using namespace std;
 
+/*
+ * Default constructor. Makes sure head is null and size is 0
+ */
 template<class T>
 LinkedList<T>::LinkedList() {
 	head= nullptr;
 	size= 0;
 }
 
+/*
+ * Returns the size of the list.
+ * Runs in constant time because a size field is maintained/
+ */
 template<class T>
 int LinkedList<T>::getSize() const {
 	return size;
 }
 
+/*
+ * Returns the element at the given index.
+ * Invalid index throws an exception.
+ */
 template<class T>
 T LinkedList<T>::get(int index) const {
 	if(index < 0 || index >= size)
@@ -34,6 +45,9 @@ T LinkedList<T>::get(int index) const {
 	return curr->data;
 }
 
+/*
+ * Appends the given element to the end of the list.
+ */
 template<class T>
 bool LinkedList<T>::add(const T& elt) {
 	if(head == nullptr) {
@@ -52,6 +66,10 @@ bool LinkedList<T>::add(const T& elt) {
 	return true;
 }
 
+/*
+ * Inserts the given element at the given index.
+ * Invalid index throws an exception.
+ */
 template<class T>
 bool LinkedList<T>::add(int index, const T& elt) {
 	if(index < 0 || index > size)
@@ -77,6 +95,10 @@ bool LinkedList<T>::add(int index, const T& elt) {
 	return true;
 }
 
+/*
+ * Sets the given index to the given element.
+ * Invalid index throws an error.
+ */
 template<class T>
 T LinkedList<T>::set(int index, const T& elt) {
 	if(index < 0 || index >= size)
@@ -92,6 +114,10 @@ T LinkedList<T>::set(int index, const T& elt) {
 	return ret;
 }
 
+/*
+ * Removes the element at the given index from the list, and returns it.
+ * Invalid indx throws an exception.
+ */
 template<class T>
 T LinkedList<T>::remove(int index) {
 	if(index < 0 || index >= size)
@@ -119,6 +145,10 @@ T LinkedList<T>::remove(int index) {
 	}
 }
 
+/*
+ * Removes the first instance of the given element from the list.
+ * Returns true if an element was removed.
+ */
 template<class T>
 bool LinkedList<T>::removeElt(const T& elt) {
 	if(head == nullptr)
@@ -142,6 +172,9 @@ bool LinkedList<T>::removeElt(const T& elt) {
 	return true;
 }
 
+/*
+ * Clears the list of all elements.
+ */
 template<class T>
 void LinkedList<T>::clear() {
 	while(head != nullptr) {
@@ -152,6 +185,9 @@ void LinkedList<T>::clear() {
 	}
 }
 
+/*
+ * Returns the first index of the specified element.
+ */
 template<class T>
 int LinkedList<T>::find(const T& elt) const {
 	int index= 0;
@@ -166,6 +202,11 @@ int LinkedList<T>::find(const T& elt) const {
 		return index;
 }
 
+/*
+ * Returns an array representation of the list. 
+ * Actually returns a pointer to the first element of the array,
+ * determine size with getSize()
+ */
 template<class T>
 T * LinkedList<T>::toArr() const {
 	T * arr= new T [size];
@@ -176,6 +217,9 @@ T * LinkedList<T>::toArr() const {
 	return arr;
 }
 
+/*
+ * Returns a string representation of the list.
+ */
 template<class T>
 string LinkedList<T>::toString() const {
 	stringstream ret;
@@ -189,6 +233,10 @@ string LinkedList<T>::toString() const {
 	return ret.str();
 }
 
+/*
+ * Overloads the ostream operator <<
+ * Just calls toString()
+ */
 template<class T>
 ostream& operator<<(ostream& os, const LinkedList<T>& list) {
 	os << list.toString();
