@@ -23,7 +23,7 @@ int LinkedList<T>::getSize() const {
 
 template<class T>
 T LinkedList<T>::get(int index) const {
-	if(index < 0)
+	if(index < 0 || index >= size)
 		throw out_of_range("Index out of bounds in LinkedList<T>::get");
 	int currIndex= 0;
 	node * curr= head;
@@ -31,10 +31,7 @@ T LinkedList<T>::get(int index) const {
 		currIndex++;
 		curr= curr->next;
 	}
-	if(curr == nullptr)
-		throw out_of_range("Index out of bounds in LinkedList<T>::get");
-	else
-		return curr->data;
+	return curr->data;
 }
 
 template<class T>
@@ -57,6 +54,8 @@ bool LinkedList<T>::add(const T& elt) {
 
 template<class T>
 bool LinkedList<T>::add(int index, const T& elt) {
+	if(index < 0 || index > size)
+		throw out_of_range("Index out of Bounds in LinkedList<T>::add");
 	if(index == 0) {
 		node * next= head;
 		head= new node;
@@ -75,7 +74,8 @@ bool LinkedList<T>::add(int index, const T& elt) {
 			curr->next->data= elt;
 			curr->next->next= next;
 		} else {
-			throw out_of_range("Index out of Bounds in LinkedList<T>::add");
+			return false; //something went wrong somewhere and a node's
+						  //next was set to null accidentally
 		}
 	}
 	size++;
@@ -84,7 +84,7 @@ bool LinkedList<T>::add(int index, const T& elt) {
 
 template<class T>
 T LinkedList<T>::set(int index, const T& elt) {
-	if(index < 0)
+	if(index < 0 || index >= size)
 		throw out_of_range("Index out of Bounds in LinkedList<T>::set");
 	int currIndex= 0;
 	node * curr= head;
@@ -92,8 +92,6 @@ T LinkedList<T>::set(int index, const T& elt) {
 		currIndex++;
 		curr= curr->next;
 	}
-	if(curr == nullptr)
-		throw out_of_range("Index out of Bounds in LinkedList<T>::set");
 	T ret= curr->data;
 	curr->data= elt;
 	return ret;
@@ -101,7 +99,8 @@ T LinkedList<T>::set(int index, const T& elt) {
 
 template<class T>
 T LinkedList<T>::remove(int index) {
-	if(index < 0)
+	if(index < 0 || index >= size)
+		throw out_of_range("Index out of Bounds in LinkedList<T>::remove");
 }
 
 template<class T>
