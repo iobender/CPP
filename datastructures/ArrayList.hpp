@@ -4,7 +4,6 @@
  *
  * Header file for ArrayList.cpp
  */
-#include <iostream>
 using namespace std;
 
 template<class T>
