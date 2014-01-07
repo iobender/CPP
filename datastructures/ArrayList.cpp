@@ -62,7 +62,7 @@ T ArrayList<T>::get(int index) const {
  * If needed, more space is allocated.
  */
 template<class T>
-bool ArrayList<T>::add(T elt) {
+bool ArrayList<T>::add(const T& elt) {
 	if(size == capacity)
 		reallocate();
 	arr[size++]= elt;
@@ -76,7 +76,7 @@ bool ArrayList<T>::add(T elt) {
  * If the given index is not valid, an exception is thrown.
  */
 template<class T>
-bool ArrayList<T>::add(int index, T elt) {
+bool ArrayList<T>::add(int index, const T& elt) {
 	if(index < 0 || index > size)
 		throw out_of_range("Index out of bounds in ArrayList<T>::add");
 	if(size == capacity)
@@ -94,7 +94,7 @@ bool ArrayList<T>::add(int index, T elt) {
  * If the given index is not valid, an exception is thrown. 
  */
 template<class T>
-T ArrayList<T>::set(int index, T elt) {
+T ArrayList<T>::set(int index, const T& elt) {
 	if(index < 0 || index >= size)
 		throw out_of_range("Index out of bounds in ArrayList<T>::set");
 	T ret= arr[index];
@@ -121,7 +121,7 @@ T ArrayList<T>::remove(int index) {
  * If it is removed, returns true, else returns false.
  */
 template<class T>
-bool ArrayList<T>::removeElt(T elt) {
+bool ArrayList<T>::removeElt(const T& elt) {
 	int index= find(elt);
 	if(index == -1)
 		return false;

@@ -21,11 +21,11 @@ class ArrayList {
 		ArrayList(int);
 		int getSize() const;
 		T get(int) const;
-		bool add(T);
-		bool add(int, T);
-		T set(int, T);
+		bool add(const T&);
+		bool add(int, const T&);
+		T set(int, const T&);
 		T remove(int);
-		bool removeElt(T);
+		bool removeElt(const T&);
 		void clear();
 		int find(T) const;
 		T * toArr() const;
