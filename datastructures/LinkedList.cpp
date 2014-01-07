@@ -19,6 +19,13 @@ bool LinkedList<T>::add(const T& elt) {
 		head= new node;
 		head->data= elt;
 		head->next= nullptr;
+	} else {
+		node * curr= head;
+		while(curr-> next != nullptr)
+			curr= curr->next;
+		curr->next= new node;
+		curr->next->data= elt;
+		curr->next->next= nullptr;
 	}
 
 	return true;
@@ -27,10 +34,13 @@ bool LinkedList<T>::add(const T& elt) {
 template<class T>
 string LinkedList<T>::toString() const {
 	stringstream ret;
-	ret << '[';
-	if(head != nullptr)
-		ret << head->data;
-	ret << ']';
+	ret << "[ ";
+	node * curr= head;
+	while(curr != nullptr) {
+		ret << curr->data << " ";
+		curr= curr->next;
+	}
+	ret << "]\n";
 	return ret.str();
 }
 
