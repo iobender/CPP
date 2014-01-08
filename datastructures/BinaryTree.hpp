@@ -22,10 +22,12 @@ class BinaryTree {
 		node * root;
 
 		void putAt(const K&, const V&, node *);
+		V * getAt(const K&, node *);
 		string toStringAt(node *) const;
 	public:
 		BinaryTree();
 		void put(const K&, const V&);
+		V * get(const K&);
 		string toString() const;
 };
 

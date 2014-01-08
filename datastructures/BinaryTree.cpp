@@ -52,6 +52,23 @@ void BinaryTree<K,V>::putAt(const K& key, const V& value, node * curr) {
 }
 
 template<class K, class V>
+V * BinaryTree<K,V>::get(const K& key) {
+	getAt(key, root);
+}
+
+template<class K, class V>
+V * BinaryTree<K,V>::getAt(const K& key, node * curr) {
+	if(curr == nullptr)
+		return nullptr;
+	if(*(curr->key) == key)
+		return curr->value;
+	else if(key < *(curr->key))
+		return getAt(key, curr->left);
+	else 
+		return getAt(key, curr->right);
+}
+
+template<class K, class V>
 string BinaryTree<K,V>::toString() const {
 	stringstream ret;
 	ret << "[ ";
