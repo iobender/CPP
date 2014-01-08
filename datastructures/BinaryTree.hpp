@@ -10,18 +10,20 @@ template<class K, class V>
 class BinaryTree {
 	private:
 		struct node {
-			K key;
-			V value;
+			K * key;
+			V * value;
 			node * left, * right;
 			string toString() {
 				stringstream ret;
-				ret << key << ':' << value;
+				ret << *key << ':' << *value;
 				return ret.str();
 			}
 		};
 		node * root;
+
+		V * putAt(const K&, const V&, node *);
 	public:
 		BinaryTree();
-		void add(K,V);
+		V * put(const K&, const V&);
 		string toString();
 };
