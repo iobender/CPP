@@ -22,9 +22,12 @@ class BinaryTree {
 		node * root;
 
 		void putAt(const K&, const V&, node *);
-		string toStringAt(node *);
+		string toStringAt(node *) const;
 	public:
 		BinaryTree();
 		void put(const K&, const V&);
-		string toString();
+		string toString() const;
 };
+
+template<class K, class V>
+ostream& operator<<(ostream&, const BinaryTree<K,V>&);

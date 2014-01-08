@@ -52,7 +52,7 @@ void BinaryTree<K,V>::putAt(const K& key, const V& value, node * curr) {
 }
 
 template<class K, class V>
-string BinaryTree<K,V>::toString() {
+string BinaryTree<K,V>::toString() const {
 	stringstream ret;
 	ret << "[ ";
 	ret << toStringAt(root);
@@ -61,7 +61,7 @@ string BinaryTree<K,V>::toString() {
 }
 
 template<class K, class V>
-string BinaryTree<K,V>::toStringAt(node * curr) {
+string BinaryTree<K,V>::toStringAt(node * curr) const {
 	if(curr == nullptr)
 		return "";
 	stringstream ret;
@@ -69,4 +69,10 @@ string BinaryTree<K,V>::toStringAt(node * curr) {
 	ret << *(curr->key) << ":" << *(curr->value) << " ";
 	ret << toStringAt(curr->right);
 	return ret.str();
+}
+
+template<class K, class V>
+ostream& operator<<(ostream& os, const BinaryTree<K,V>& tree) {
+	os << tree.toString();
+	return os;
 }
