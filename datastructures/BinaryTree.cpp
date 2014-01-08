@@ -28,7 +28,7 @@ void BinaryTree<K,V>::put(const K& key, const V& value) {
 
 template<class K, class V>
 void BinaryTree<K,V>::putAt(const K& key, const V& value, node * curr) {
-	if(*(curr->key) == key) {
+	if(key == *(curr->key)) {
 		V * old= curr-> value;
 		curr->value= new V (value);
 		delete old;
@@ -60,7 +60,7 @@ template<class K, class V>
 bool BinaryTree<K,V>::containsKeyAt(const K& key, node * curr) const {
 	if(curr == nullptr)
 		return false;
-	if(*(curr->key) == key)
+	if(key == *(curr->key))
 		return true;
 	if(key < *(curr->key))
 		return containsKeyAt(key, curr->left);
@@ -77,7 +77,7 @@ template<class K, class V>
 V * BinaryTree<K,V>::getAt(const K& key, node * curr) const {
 	if(curr == nullptr)
 		return nullptr;
-	if(*(curr->key) == key)
+	if(key == *(curr->key))
 		return curr->value;
 	else if(key < *(curr->key))
 		return getAt(key, curr->left);
