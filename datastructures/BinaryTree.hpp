@@ -22,12 +22,14 @@ class BinaryTree {
 		node * root;
 
 		void putAt(const K&, const V&, node *);
-		V * getAt(const K&, node *);
+		bool containsKeyAt(const K&, node *) const;
+		V * getAt(const K&, node *) const;
 		string toStringAt(node *) const;
 	public:
 		BinaryTree();
 		void put(const K&, const V&);
-		V * get(const K&);
+		bool containsKey(const K&) const;
+		V * get(const K&) const;
 		string toString() const;
 };
 
