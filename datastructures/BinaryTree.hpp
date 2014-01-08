@@ -21,9 +21,10 @@ class BinaryTree {
 		};
 		node * root;
 
-		V * putAt(const K&, const V&, node *);
+		void putAt(const K&, const V&, node *);
+		string toStringAt(node *);
 	public:
 		BinaryTree();
-		V * put(const K&, const V&);
+		void put(const K&, const V&);
 		string toString();
 };

@@ -15,29 +15,58 @@ BinaryTree<K,V>::BinaryTree() {
 }
 
 template<class K, class V>
-V * BinaryTree<K,V>::put(const K& key, const V& value) {
+void BinaryTree<K,V>::put(const K& key, const V& value) {
 	if(root == nullptr) {
 		root= new node;
 		root->left= root->right= nullptr;
 		root->key= new K (key);
 		root->value= new V (value);
-		return nullptr;
 	} else {
-		return putAt(key, value, root);
+		putAt(key, value, root);
 	}
 }
 
 template<class K, class V>
-V * BinaryTree<K,V>::putAt(const K& key, const V& value, node * curr) {
-
+void BinaryTree<K,V>::putAt(const K& key, const V& value, node * curr) {
+	if(*(curr->key) == key) {
+		V * old= curr-> value;
+		curr->value= new V (value);
+		delete old;
+	} else if (key < *(curr->key)) {
+		if(curr->left == nullptr) {
+			curr->left= new node;
+			curr->left->left= curr->left->right= nullptr;
+			curr->left->key= new K (key);
+			curr->left->value= new V (value);
+		} else 
+			putAt(key, value, curr->left);
+	} else {
+		if(curr->right == nullptr) {
+			curr->right= new node;
+			curr->right->left= curr->right->right= nullptr;
+			curr->right->key= new K (key);
+			curr->right->value= new V (value);
+		} else
+			putAt(key, value, curr->right);
+	}
 }
 
 template<class K, class V>
 string BinaryTree<K,V>::toString() {
 	stringstream ret;
-	if(root == nullptr)
-		ret << "-";
-	else
-		ret << root->toString();
+	ret << "[ ";
+	ret << toStringAt(root);
+	ret << "]\n";
+	return ret.str();
+}
+
+template<class K, class V>
+string BinaryTree<K,V>::toStringAt(node * curr) {
+	if(curr == nullptr)
+		return "";
+	stringstream ret;
+	ret << toStringAt(curr->left);
+	ret << *(curr->key) << ":" << *(curr->value) << " ";
+	ret << toStringAt(curr->right);
 	return ret.str();
 }
