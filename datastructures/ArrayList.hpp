@@ -18,6 +18,8 @@ class ArrayList {
 	public:
 		ArrayList();
 		ArrayList(int);
+		ArrayList(const ArrayList&);
+		~ArrayList();
 		int getSize() const;
 		T get(int) const;
 		bool add(const T&);

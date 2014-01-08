@@ -17,6 +17,8 @@ class LinkedList {
 		int size;
 	public:
 		LinkedList();
+		LinkedList(const LinkedList&);
+		~LinkedList();
 		int getSize() const;
 		T get(int) const;
 		bool add(const T&);

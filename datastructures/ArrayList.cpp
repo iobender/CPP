@@ -37,6 +37,26 @@ ArrayList<T>::ArrayList(int init_capacity) {
 }
 
 /*
+ * Copy constructor, creating a deep copy of the given list
+ */
+template<class T>
+ArrayList<T>::ArrayList(const ArrayList& other) {
+	capacity= other.capacity;
+	size= other.size;
+	arr= new T [size];
+	for(int i= 0; i < size; i++)
+		arr[i]= other.arr[i];
+}
+
+/*
+ * Destructor, deletes dynamically allocated data array
+ */
+template<class T>
+ArrayList<T>::~ArrayList() {
+	delete arr;
+}
+
+/*
  * Returns the number of elements in the list. 
  * Note this is NOT the current capacity of the list.
  */

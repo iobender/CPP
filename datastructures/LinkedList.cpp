@@ -20,8 +20,38 @@ LinkedList<T>::LinkedList() {
 }
 
 /*
+ * Copy constructor, performs a deep copy of the given list.
+ */
+template<class T>
+LinkedList<T>::LinkedList(const LinkedList& other) {
+	size= other.size;
+	if(other.head == nullptr)
+		head= nullptr;
+	else {
+		head= new node;
+		head->data= other.head->data;
+		node * curr= head;
+		node * otherCurr= other.head->next;
+		while(otherCurr != nullptr) {
+			curr->next= new node;
+			curr= curr->next;
+			curr->data= otherCurr->data;
+			otherCurr= otherCurr->next;
+		}
+	}
+}
+
+/*
+ * Destructor, removes all nodes and deletes them by calling clear
+ */
+template<class T>
+LinkedList<T>::~LinkedList() {
+	clear();
+}
+
+/*
  * Returns the size of the list.
- * Runs in constant time because a size field is maintained/
+ * Runs in constant time because a size field is maintained.
  */
 template<class T>
 int LinkedList<T>::getSize() const {
