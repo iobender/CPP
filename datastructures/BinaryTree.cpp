@@ -16,6 +16,11 @@ BinaryTree<K,V>::BinaryTree() {
 }
 
 template<class K, class V>
+BinaryTree<K,V>::~BinaryTree() {
+	clear();
+}
+
+template<class K, class V>
 void BinaryTree<K,V>::put(const K& key, const V& value) {
 	if(root == nullptr) {
 		root= new node;

@@ -35,6 +35,7 @@ class BinaryTree {
 		string toStringAt(node *, int) const;
 	public:
 		BinaryTree();
+		~BinaryTree();
 		void put(const K&, const V&);
 		bool containsKey(const K&) const;
 		V * get(const K&) const;
