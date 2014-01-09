@@ -31,6 +31,7 @@ class BinaryTree {
 		node * removeAt(const K&, node *);
 		node * minNode(node *) const;
 		node * maxNode(node *) const;
+		void clearAt(node *);
 		string toStringAt(node *, int) const;
 	public:
 		BinaryTree();
@@ -40,6 +41,7 @@ class BinaryTree {
 		void remove(const K&);
 		K min() const;
 		K max() const;
+		void clear();
 		string toString() const;
 };
 

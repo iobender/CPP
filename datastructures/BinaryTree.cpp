@@ -6,6 +6,7 @@
  */
 #include <iostream>
 #include <sstream>
+#include <stdexcept>
 #include "BinaryTree.hpp"
 using namespace std;
 
@@ -124,11 +125,15 @@ struct BinaryTree<K,V>::node * BinaryTree<K,V>::removeAt(const K& key, node * cu
 
 template<class K, class V>
 K BinaryTree<K,V>::min() const {
+	if(root == nullptr)
+		throw "Error in BinaryTree<K,V>::min(): tree is empty";
 	return *(minNode(root)->key);
 }
 
 template<class K, class V>
 K BinaryTree<K,V>::max() const {
+	if(root == nullptr)
+		throw "Error in BinaryTree<K,V>::max(): tree is empty";
 	return *(maxNode(root)->key);
 }
 
@@ -146,6 +151,21 @@ struct BinaryTree<K,V>::node * BinaryTree<K,V>::maxNode(node * curr) const {
 		return curr;
 	else
 		return maxNode(curr->right);
+}
+
+template<class K, class V>
+void BinaryTree<K,V>::clear() {
+	clearAt(root);
+	root= nullptr;
+}
+
+template<class K, class V>
+void BinaryTree<K,V>::clearAt(node * curr) {
+	if(curr != nullptr) {
+		clearAt(curr->left);
+		clearAt(curr->right);
+		delete curr;
+	}
 }
 
 template<class K, class V>
