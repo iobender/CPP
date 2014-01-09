@@ -123,6 +123,24 @@ struct BinaryTree<K,V>::node * BinaryTree<K,V>::removeAt(const K& key, node * cu
 }
 
 template<class K, class V>
+K BinaryTree<K,V>::min() {
+	return *(minNode(root)->key);
+}
+
+template<class K, class V>
+K BinaryTree<K,V>::max() {
+	return *(maxNode(root)->key);
+}
+
+template<class K, class V>
+struct BinaryTree<K,V>::node * BinaryTree<K,V>::minNode(node * curr) {
+	if(curr->left == nullptr)
+		return curr;
+	else
+		return minNode(curr->left);
+}
+
+template<class K, class V>
 struct BinaryTree<K,V>::node * BinaryTree<K,V>::maxNode(node * curr) {
 	if(curr->right == nullptr)
 		return curr;
