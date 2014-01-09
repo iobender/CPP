@@ -29,8 +29,8 @@ class BinaryTree {
 		bool containsKeyAt(const K&, node *) const;
 		V * getAt(const K&, node *) const;
 		node * removeAt(const K&, node *);
-		node * minNode(node *);
-		node * maxNode(node *);
+		node * minNode(node *) const;
+		node * maxNode(node *) const;
 		string toStringAt(node *, int) const;
 	public:
 		BinaryTree();
@@ -38,8 +38,8 @@ class BinaryTree {
 		bool containsKey(const K&) const;
 		V * get(const K&) const;
 		void remove(const K&);
-		K min();
-		K max();
+		K min() const;
+		K max() const;
 		string toString() const;
 };
 
