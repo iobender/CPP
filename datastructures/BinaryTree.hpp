@@ -13,6 +13,10 @@ class BinaryTree {
 			K * key;
 			V * value;
 			node * left, * right;
+			~node() {
+				delete key;
+				delete value;
+			}
 			string toString() {
 				stringstream ret;
 				ret << *key << ':' << *value;
@@ -24,12 +28,14 @@ class BinaryTree {
 		void putAt(const K&, const V&, node *);
 		bool containsKeyAt(const K&, node *) const;
 		V * getAt(const K&, node *) const;
-		string toStringAt(node *) const;
+		node * removeAt(const K&, node *);
+		string toStringAt(node *, int) const;
 	public:
 		BinaryTree();
 		void put(const K&, const V&);
 		bool containsKey(const K&) const;
 		V * get(const K&) const;
+		void remove(const K&);
 		string toString() const;
 };
 

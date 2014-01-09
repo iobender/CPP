@@ -86,22 +86,55 @@ V * BinaryTree<K,V>::getAt(const K& key, node * curr) const {
 }
 
 template<class K, class V>
+void BinaryTree<K,V>::remove(const K& key) {
+	root= removeAt(key, root);
+}
+
+template<class K, class V>
+struct BinaryTree<K,V>::node * BinaryTree<K,V>::removeAt(const K& key, node * curr) {
+	if(curr == nullptr)
+		return nullptr;
+	if(key == *(curr->key)) {
+		if(curr->left == nullptr && curr->right == nullptr) {
+			delete curr;
+			return nullptr;
+		} else if(curr->left == nullptr && curr->right != nullptr) {
+			node * next= curr->right;
+			delete curr;
+			return next;
+		} else if(curr->left != nullptr && curr->right == nullptr) {
+			node * next= curr->right;
+			delete curr;
+			return next;
+		} else {
+			//black magic
+		}
+	} else if(key < *(curr->key)) {
+		curr->left= removeAt(key, curr->left);
+		return curr;
+	} else {
+		curr->right= removeAt(key, curr->right);
+		return curr;
+	}
+}
+
+template<class K, class V>
 string BinaryTree<K,V>::toString() const {
 	stringstream ret;
 	ret << "[ ";
-	ret << toStringAt(root);
+	ret << toStringAt(root, 1);
 	ret << "]\n";
 	return ret.str();
 }
 
 template<class K, class V>
-string BinaryTree<K,V>::toStringAt(node * curr) const {
+string BinaryTree<K,V>::toStringAt(node * curr, int level) const {
 	if(curr == nullptr)
 		return "";
 	stringstream ret;
-	ret << toStringAt(curr->left);
-	ret << *(curr->key) << ":" << *(curr->value) << " ";
-	ret << toStringAt(curr->right);
+	ret << toStringAt(curr->left, level+1);
+	ret << *(curr->key) << "->" << *(curr->value) << ":(" << level << ") ";
+	ret << toStringAt(curr->right, level+1);
 	return ret.str();
 }
 
