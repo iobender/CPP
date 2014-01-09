@@ -103,11 +103,15 @@ struct BinaryTree<K,V>::node * BinaryTree<K,V>::removeAt(const K& key, node * cu
 			delete curr;
 			return next;
 		} else if(curr->left != nullptr && curr->right == nullptr) {
-			node * next= curr->right;
+			node * next= curr->left;
 			delete curr;
 			return next;
 		} else {
-			//black magic
+			node * leftMax= maxNode(curr->left);
+			*(curr->key)= *(leftMax->key);
+			*(curr->value)= *(leftMax->value);
+			removeAt(*(leftMax->key), curr->left);
+			return curr;
 		}
 	} else if(key < *(curr->key)) {
 		curr->left= removeAt(key, curr->left);
@@ -116,6 +120,14 @@ struct BinaryTree<K,V>::node * BinaryTree<K,V>::removeAt(const K& key, node * cu
 		curr->right= removeAt(key, curr->right);
 		return curr;
 	}
+}
+
+template<class K, class V>
+struct BinaryTree<K,V>::node * BinaryTree<K,V>::maxNode(node * curr) {
+	if(curr->right == nullptr)
+		return curr;
+	else
+		return maxNode(curr->right);
 }
 
 template<class K, class V>

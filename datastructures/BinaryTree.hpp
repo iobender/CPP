@@ -29,6 +29,7 @@ class BinaryTree {
 		bool containsKeyAt(const K&, node *) const;
 		V * getAt(const K&, node *) const;
 		node * removeAt(const K&, node *);
+		node * maxNode(node *);
 		string toStringAt(node *, int) const;
 	public:
 		BinaryTree();
