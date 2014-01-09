@@ -169,6 +169,11 @@ void BinaryTree<K,V>::clearAt(node * curr) {
 }
 
 template<class K, class V>
+bool BinaryTree<K,V>::isEmpty() const {
+	return root == nullptr;
+}
+
+template<class K, class V>
 string BinaryTree<K,V>::toString() const {
 	stringstream ret;
 	ret << "[ ";

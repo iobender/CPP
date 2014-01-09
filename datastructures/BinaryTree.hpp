@@ -42,6 +42,7 @@ class BinaryTree {
 		K min() const;
 		K max() const;
 		void clear();
+		bool isEmpty() const;
 		string toString() const;
 };
 
