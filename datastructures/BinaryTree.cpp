@@ -10,16 +10,29 @@
 #include "BinaryTree.hpp"
 using namespace std;
 
+/*
+ * Default constructor. 
+ * Makes sure root is null.
+ */
 template<class K, class V>
 BinaryTree<K,V>::BinaryTree() {
 	root= nullptr;
 }
 
+/*
+ * Destructor
+ * clears all nodes and their memory.
+ */
 template<class K, class V>
 BinaryTree<K,V>::~BinaryTree() {
 	clear();
 }
 
+/*
+ * Puts a key-value pair in the map. Replaces old value
+ * if key already exists.
+ * Calls helper function for use of recursion.
+ */
 template<class K, class V>
 void BinaryTree<K,V>::put(const K& key, const V& value) {
 	if(root == nullptr) {
@@ -32,6 +45,9 @@ void BinaryTree<K,V>::put(const K& key, const V& value) {
 	}
 }
 
+/*
+ * Helper function for put().
+ */
 template<class K, class V>
 void BinaryTree<K,V>::putAt(const K& key, const V& value, node * curr) {
 	if(key == *(curr->key)) {
@@ -57,11 +73,18 @@ void BinaryTree<K,V>::putAt(const K& key, const V& value, node * curr) {
 	}
 }
 
+/*
+ * Returns true if the map contains the given key, else false.
+ * Calls helper function for use of recursion.
+ */
 template<class K, class V>
 bool BinaryTree<K,V>::containsKey(const K& key) const {
 	return containsKeyAt(key, root);
 }
 
+/*
+ * Helper function for containsKey().
+ */
 template<class K, class V>
 bool BinaryTree<K,V>::containsKeyAt(const K& key, node * curr) const {
 	if(curr == nullptr)
@@ -74,11 +97,19 @@ bool BinaryTree<K,V>::containsKeyAt(const K& key, node * curr) const {
 		return containsKeyAt(key, curr->right);
 }
 
+/*
+ * Returns a pointer to the value for the given key.
+ * Returns nullptr if the key is not in the map.
+ * Calls helper function for use of recursion.
+ */
 template<class K, class V>
 V * BinaryTree<K,V>::get(const K& key) const {
 	return getAt(key, root);
 }
 
+/*
+ * Helper function for get().
+ */
 template<class K, class V>
 V * BinaryTree<K,V>::getAt(const K& key, node * curr) const {
 	if(curr == nullptr)
@@ -91,11 +122,19 @@ V * BinaryTree<K,V>::getAt(const K& key, node * curr) const {
 		return getAt(key, curr->right);
 }
 
+/*
+ * Removes the given key and its value from the map.
+ * Does nothing if the key is not in the map.
+ * Calls helper function for use of recursion.
+ */
 template<class K, class V>
 void BinaryTree<K,V>::remove(const K& key) {
 	root= removeAt(key, root);
 }
 
+/*
+ * Helper function for remove().
+ */
 template<class K, class V>
 struct BinaryTree<K,V>::node * BinaryTree<K,V>::removeAt(const K& key, node * curr) {
 	if(curr == nullptr)
@@ -128,6 +167,10 @@ struct BinaryTree<K,V>::node * BinaryTree<K,V>::removeAt(const K& key, node * cu
 	}
 }
 
+/*
+ * Returns the minimum key in the map.
+ * Calls helper function for use of recursion.
+ */
 template<class K, class V>
 K BinaryTree<K,V>::min() const {
 	if(root == nullptr)
@@ -135,6 +178,10 @@ K BinaryTree<K,V>::min() const {
 	return *(minNode(root)->key);
 }
 
+/*
+ * Returns the maximum key in the map.
+ * Calls helper function for use of recursion.
+ */
 template<class K, class V>
 K BinaryTree<K,V>::max() const {
 	if(root == nullptr)
@@ -142,6 +189,9 @@ K BinaryTree<K,V>::max() const {
 	return *(maxNode(root)->key);
 }
 
+/*
+ * Helper function for min().
+ */
 template<class K, class V>
 struct BinaryTree<K,V>::node * BinaryTree<K,V>::minNode(node * curr) const {
 	if(curr->left == nullptr)
@@ -150,6 +200,9 @@ struct BinaryTree<K,V>::node * BinaryTree<K,V>::minNode(node * curr) const {
 		return minNode(curr->left);
 }
 
+/*
+ * Helper function for max().
+ */
 template<class K, class V>
 struct BinaryTree<K,V>::node * BinaryTree<K,V>::maxNode(node * curr) const {
 	if(curr->right == nullptr)
@@ -158,12 +211,19 @@ struct BinaryTree<K,V>::node * BinaryTree<K,V>::maxNode(node * curr) const {
 		return maxNode(curr->right);
 }
 
+/*
+ * Removes all nodes from the list.
+ * Calls helper function for use of recursion.
+ */
 template<class K, class V>
 void BinaryTree<K,V>::clear() {
 	clearAt(root);
 	root= nullptr;
 }
 
+/*
+ * Helper function for clear().
+ */
 template<class K, class V>
 void BinaryTree<K,V>::clearAt(node * curr) {
 	if(curr != nullptr) {
@@ -173,11 +233,19 @@ void BinaryTree<K,V>::clearAt(node * curr) {
 	}
 }
 
+/*
+ * Returns if the tree is empty.
+ */
 template<class K, class V>
 bool BinaryTree<K,V>::isEmpty() const {
 	return root == nullptr;
 }
 
+/*
+ * Returns a string representation of this map,
+ * including what level of the tree each node is on.
+ * Calls helper function for use of recursion.
+ */
 template<class K, class V>
 string BinaryTree<K,V>::toString() const {
 	stringstream ret;
@@ -187,6 +255,9 @@ string BinaryTree<K,V>::toString() const {
 	return ret.str();
 }
 
+/*
+ * Helper function for toString().
+ */
 template<class K, class V>
 string BinaryTree<K,V>::toStringAt(node * curr, int level) const {
 	if(curr == nullptr)
@@ -198,6 +269,9 @@ string BinaryTree<K,V>::toStringAt(node * curr, int level) const {
 	return ret.str();
 }
 
+/*
+ * Overloads the ostream << operator for the BinaryTree class
+ */
 template<class K, class V>
 ostream& operator<<(ostream& os, const BinaryTree<K,V>& tree) {
 	os << tree.toString();
