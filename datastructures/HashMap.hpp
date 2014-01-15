@@ -30,3 +30,6 @@ class HashMap {
 		void put(const K&, const V&);
 		string toString() const;
 };
+
+template<class K, class V>
+ostream& operator<< (ostream&, const HashMap<K,V>&);

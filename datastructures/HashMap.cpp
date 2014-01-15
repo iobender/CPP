@@ -49,3 +49,8 @@ string HashMap<K,V>::toString() const {
 	return ret.str();
 }
 
+template<class K, class V>
+ostream& operator<< (ostream& os, const HashMap<K,V>& hm) {
+	os << hm.toString();
+	return os;
+}
