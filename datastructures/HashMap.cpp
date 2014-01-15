@@ -20,7 +20,7 @@ HashMap<K,V>::HashMap() {
 }
 
 template<class K, class V>
-string HashMap<K,V>::toString() {
+string HashMap<K,V>::toString() const {
 	stringstream ret;
 	ret << "[ ";
 	for(int i= 0; i < capacity; i++) {

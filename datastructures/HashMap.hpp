@@ -11,7 +11,7 @@ class HashMap {
 		struct entry {
 			K key;
 			V value;
-			string toString() {
+			string toString() const {
 				stringstream ret;
 				ret << key << ":" << value;
 				return ret.str();
@@ -26,5 +26,5 @@ class HashMap {
 	public:
 		HashMap();
 		//~HashMap();
-		string toString();
+		string toString() const;
 };
