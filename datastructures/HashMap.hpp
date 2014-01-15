@@ -21,9 +21,10 @@ class HashMap {
 		const unsigned int DEFAULT_INITIAL_CAPACITY= 7;
 		unsigned int capacity;
 		unsigned int size;
-		entry * map[];
+		entry * * map;
 		
 	public:
 		HashMap();
 		//~HashMap();
+		string toString();
 };
