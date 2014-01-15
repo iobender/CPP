@@ -18,6 +18,8 @@ class HashMap {
 			}
 		};
 
+		hash<K> key_hash;
+
 		const unsigned int DEFAULT_INITIAL_CAPACITY= 7;
 		unsigned int capacity;
 		unsigned int size;
@@ -25,6 +27,6 @@ class HashMap {
 		
 	public:
 		HashMap();
-		//~HashMap();
+		void put(const K&, const V&);
 		string toString() const;
 };
