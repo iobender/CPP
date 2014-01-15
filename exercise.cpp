@@ -44,7 +44,7 @@ int main() {
 
 	float fraction;
 	if(week) {
-		cout << "Goals for month " << choice << ":\n";
+		cout << "Goals for week " << choice << ":\n";
 		fraction= calcWeekFraction(choice);
 	} else {
 		cout << "Goals for month " << choice << ":\n";
