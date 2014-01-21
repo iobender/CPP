@@ -4,3 +4,4 @@
  *
  * Implementation of the Sudoku class found at sudoku.hpp
  */ 
+#include "sudoku.hpp"
