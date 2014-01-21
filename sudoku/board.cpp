@@ -27,14 +27,16 @@ class Board {
 				if(c >= '1' && c <= '9') {
 					board[i/9][i%9]= {c};
 				} else if (c == '.' || c == '0') {
-					board[i/9][i&9]= {'1','2','3','4','5','6','7','8','9'};
+					board[i/9][i%9]= {'1','2','3','4','5','6','7','8','9'};
 				} else {
+					std::cout << "dec" << std::endl;
 					i--;
 				}
 			}
 			for(; i < 9*9; i++) {
 				board[i/9][i%9]= {'1','2','3','4','5','6','7','8','9'};
 			}
+			
 		}
 		std::string display() {
 			std::stringstream ss;
