@@ -1,0 +1,3 @@
+sudoku.cpp is a sudoku solver. 
+This solver is based off of Peter Norvig's solution, found at norvig.com/sudoku.html
+I will be following how he solves the sudoku problem, without copying his code.
