@@ -7,6 +7,7 @@
 #include "board.cpp"
 
 class Sudoku {
+	private:
 	public:
 		static void propogateConstraints(Board&);
 		static void solve(Board&);
