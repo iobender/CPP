@@ -14,6 +14,7 @@ class Board {
 	private:
 		std::unordered_set<char> board[9][9];
 	public:
+
 		Board() {
 			for(int r= 0; r < 9; r++) {
 				for(int c= 0; c < 9; c++) {
@@ -21,6 +22,7 @@ class Board {
 				}
 			}
 		}
+
 		Board(std::string board_str) {
 			std::string::size_type num_chars= (board_str.size() < 9*9 ? board_str.size() : 9*9);
 			std::string::size_type i;
@@ -40,35 +42,70 @@ class Board {
 			}
 			
 		}
-		unit row(int square_num) { return row(square_num/9, square_num%9); }
-		unit row(int row, int col) { 
-			unit ret;
-			for(int c= 0; c < 9; c++) {
-				ret[c]= board[row][c];
-			}
-			return ret;
-		}
-		unit col(int square_num) { return col(square_num/9, square_num%9); }
-		unit col(int row, int col) {
-			unit ret;
-			for(int r= 0; r < 9; r++) {
-				ret[r]= board[r][col];
-			}
 
+		std::array<int,9> rowIndices(int square_num) { 
+			return rowIndices(square_num/9, square_num%9); 
+		}
+		
+		std::array<int,9> rowIndices(int row, int col) { 
+			std::array<int,9> ret;
+			for(int c= 0; c < 9; c++)
+				ret[c]= 9*row + c;
 			return ret;
 		}
-		unit box(int square_num) { return box(square_num/9, square_num%9); }
-		unit box(int row, int col) {
-			unit ret;
+		
+		std::array<int,9> colIndices(int square_num) { 
+			return colIndices(square_num/9, square_num%9); 
+		}
+		
+		std::array<int,9> colIndices(int row, int col) {
+			std::array<int,9> ret;
+			for(int r= 0; r < 9; r++) {
+				ret[r]= 9*r + col;
+			}
+			return ret;
+		}
+		
+		std::array<int,9> boxIndices(int square_num) { 
+			return boxIndices(square_num/9, square_num%9); 
+		}
+
+		std::array<int,9> boxIndices(int row, int col) {
+			std::array<int,9> ret;
 			int count= 0;
 			for(int r= row-row%3; r < row-row%3+3; r++) {
 				for(int c= col-col%3; c < col-col%3+3; c++) {
-					ret[count]= board[r][c];
+					ret[count]= 9*r+c;
 					count++;
 				}
 			}
 			return ret;
 		}
+		
+		std::array<int,20> peerIndices(int square_num) { 
+			return peerIndices(square_num/9, square_num%9); 
+		}
+		
+		std::array<int,20> peerIndices(int row, int col) {
+			std::unordered_set<int> indices;
+			for(int r: rowIndices(row,col)) {
+				indices.insert(r);
+			}
+			for(int c: colIndices(row,col)) {
+				indices.insert(c);
+			}
+			for(int b: boxIndices(row,col)) {
+				indices.insert(b);
+			}
+			indices.erase(9*row+col);
+			std::array<int,20> ret;
+			int count= 0;
+			for(auto it= indices.begin(); it != indices.end(); it++) {
+				ret[count++]= *it;
+			}
+			return ret;
+		}
+
 		std::string display() {
 			std::stringstream ss;
 			for(int r= 0; r < 9; r++) {
