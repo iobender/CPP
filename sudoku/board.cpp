@@ -134,7 +134,11 @@ class Board {
 				}
 			} else {
 				for(int r= 0; r < 9; r++) {
+					if(r != 0 && r%3 == 0)
+						ss << "------+-------+------ \n";
 					for(int c= 0; c < 9; c++) {
+						if(c != 0 && c%3 == 0)
+							ss << "| ";
 						auto entry= board[r][c];
 						if(entry.size() == 1) {
 							ss << *entry.begin() << " ";
