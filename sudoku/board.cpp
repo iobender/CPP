@@ -114,22 +114,36 @@ class Board {
 			return ret;
 		}
 
-		std::string display() {
+		std::string display(bool full= false) {
 			std::stringstream ss;
-			for(int r= 0; r < 9; r++) {
-				for(int c= 0; c < 9; c++) {
-					auto entry= board[r][c];
-					int count= 0;
-					for(auto it= entry.begin(); it != entry.end(); it++) {
-						ss << *it;
-						count ++;
-					}
-					for(; count < 9; count ++) {
+			if(full) {
+				for(int r= 0; r < 9; r++) {
+					for(int c= 0; c < 9; c++) {
+						auto entry= board[r][c];
+						int count= 0;
+						for(auto it= entry.begin(); it != entry.end(); it++) {
+							ss << *it;
+							count ++;
+						}
+						for(; count < 9; count ++) {
+							ss << ' ';
+						}
 						ss << ' ';
 					}
-					ss << ' ';
+					ss << "\n\n";
 				}
-				ss << "\n\n";
+			} else {
+				for(int r= 0; r < 9; r++) {
+					for(int c= 0; c < 9; c++) {
+						auto entry= board[r][c];
+						if(entry.size() == 1) {
+							ss << *entry.begin() << " ";
+						} else {
+							ss << ". ";
+						}
+					}
+					ss << '\n';
+				}
 			}
 			return ss.str();
 		}

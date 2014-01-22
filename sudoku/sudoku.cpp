@@ -6,11 +6,13 @@
  */ 
 #include "sudoku.hpp"
 
-void Sudoku::propogateConstraint(Board& board, int i, std::unordered_set<int> soFar) {
+void Sudoku::propogateConstraint(Board& board, int i, std::unordered_set<int>& soFar) {
 	if(board.at(i).size() == 1 && !soFar.count(i)) {
 		char c= *board.at(i).begin();
+		soFar.insert(i);
 		for(int ind: board.peerIndices(i)) {
 			board.at(ind).erase(c);
+			propogateConstraint(board, ind, soFar);
 		}
 	}
 }
