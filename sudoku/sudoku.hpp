@@ -9,6 +9,7 @@
 class Sudoku {
 	private:
 	public:
+		static void propogateConstraint(Board&, int, std::unordered_set<int>);
 		static void propogateConstraints(Board&);
 		static void solve(Board&);
 };

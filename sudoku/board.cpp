@@ -43,6 +43,14 @@ class Board {
 			
 		}
 
+		square& at(int index) {
+			return at(index/9, index%9);
+		}
+
+		square& at(int row, int col) {
+			return board[row][col];
+		}
+
 		std::array<int,9> rowIndices(int square_num) { 
 			return rowIndices(square_num/9, square_num%9); 
 		}
