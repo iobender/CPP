@@ -8,7 +8,10 @@
 
 void Sudoku::propogateConstraint(Board& board, int i, std::unordered_set<int> soFar) {
 	if(board.at(i).size() == 1 && !soFar.count(i)) {
-		std::cout << "Propping " << i << std::endl;
+		char c= *board.at(i).begin();
+		for(int ind: board.peerIndices(i)) {
+			board.at(ind).erase(c);
+		}
 	}
 }
 
